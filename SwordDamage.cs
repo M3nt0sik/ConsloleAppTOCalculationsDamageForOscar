@@ -11,6 +11,7 @@ namespace ConsloleAppTOCalculationsDamageForOscar
         public const int BaseDamage = 3;
         public const int FlameDamage = 2;
         private int roll;
+        private int flaming;
 
         public int Roll
         {
@@ -18,7 +19,7 @@ namespace ConsloleAppTOCalculationsDamageForOscar
             set 
             { 
                 roll = value;
-                CalculateDamage();                
+                CalculateDamage();
             }
         }
         public decimal MagicMultipler = 1M;
@@ -42,13 +43,15 @@ namespace ConsloleAppTOCalculationsDamageForOscar
             }
             CalculateDamage();
         }
-        public void SetFlamingDamage(bool isFlaming)
+        
+        public int Flaming 
         {
-            CalculateDamage();
-            if (isFlaming)
+            get { return flaming; }
+            set
             {
-                Damage += FlameDamage;
-            }
+                flaming = value;
+                CalculateDamage();
+            } 
         }
     }
 
