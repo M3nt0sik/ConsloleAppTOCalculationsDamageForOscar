@@ -10,8 +10,17 @@ namespace ConsloleAppTOCalculationsDamageForOscar
     {
         public const int BaseDamage = 3;
         public const int FlameDamage = 2;
+        private int roll;
 
-        public int Roll;
+        public int Roll
+        {
+            get { return roll; }
+            set 
+            { 
+                roll = value;
+                CalculateDamage();                
+            }
+        }
         public decimal MagicMultipler = 1M;
         public int FlamingDamage = 0;
         public int Damage;
