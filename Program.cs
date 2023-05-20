@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Random random = new Random();
+        static Random random = new Random();
         SwordDamage sword = new SwordDamage();
         while(true)
         {
@@ -13,6 +13,7 @@ internal class Program
             Console.Write("Wybierza atak: ");
             char userchose;
             userchose = Console.ReadKey().KeyChar;
+            
             
             if (userchose != '0' && userchose != '1' && userchose != '2' && userchose != '3') return;
             sword.SetMagic(userchose != '1' || userchose != '3');
