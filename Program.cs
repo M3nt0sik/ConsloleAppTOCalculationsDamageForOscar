@@ -2,13 +2,13 @@
 
 internal class Program
 {
+    static Random random = new Random();
     private static void Main(string[] args)
-    {
-        static Random random = new Random();
-        SwordDamage sword = new SwordDamage();
+    {       
+        SwordDamage sword = new SwordDamage(RollDice());
         while(true)
         {
-            sword.Roll = random.Next(1, 7) + random.Next(1, 7) + random.Next(1, 7);
+            
             Console.WriteLine("0 - ani magiczny ani płonący; 1 - magiczny; 2 - płonący; 3 - magiczny i płonący; inne wartości koniec");
             Console.Write("Wybierza atak: ");
             char userchose;
@@ -16,11 +16,17 @@ internal class Program
             
             
             if (userchose != '0' && userchose != '1' && userchose != '2' && userchose != '3') return;
-            sword.SetMagic(userchose != '1' || userchose != '3');
-            sword.SetFlamingDamage(userchose != '2' || userchose != '3');
+            sword.Roll = RollDice();
+            sword.Magic = (userchose == '1' || userchose == '3');
+            sword.Flaming = (userchose == '2' || userchose == '3');
             Console.WriteLine("\nRzut: " + sword.Roll + ", punty obrazen: " + sword.Damage);
             Console.WriteLine('\n');
         }
         
+    }
+
+    private static int RollDice()
+    {
+        return random.Next(1, 7) + random.Next(1, 7) + random.Next(1, 7);
     }
 }

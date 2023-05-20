@@ -8,11 +8,11 @@ namespace ConsloleAppTOCalculationsDamageForOscar
 {
     internal class SwordDamage
     {
-        public const int BaseDamage = 3;
-        public const int FlameDamage = 2;
+        private const int BaseDamage = 3;
+        private const int FlameDamage = 2;
         private int roll;
-        private int flaming;
-        private int magic;
+        private bool flaming;
+        private bool magic;
         /// <summary>
         /// Wczytuje do zmiennej roll wartosc rzutu kostką
         /// </summary>
@@ -20,6 +20,8 @@ namespace ConsloleAppTOCalculationsDamageForOscar
         public SwordDamage(int Roll)
         {
             roll = Roll;
+            magic = false;
+            flaming = false;
         }
 
         //public decimal MagicMultipler = 1M;
@@ -28,17 +30,20 @@ namespace ConsloleAppTOCalculationsDamageForOscar
 
         private void CalculateDamage()
         {
-            Damage = (int)(this.Roll * this.Magic) + BaseDamage + this.Flaming;
+            decimal magicMultipler = 1M;
+            if (magic) magicMultipler = 1.75M;
+            Damage = (int)(this.Roll * magicMultipler) + BaseDamage;
+            if (flaming) Damage += FlameDamage;
         }
         /// <summary>
         /// Propertis to magic damage
         /// </summary>
         /// <remarks>
-        /// Getter returns value value of multiply by magic damage
+        /// Getter returns bool value is magic
         /// 
-        /// Setter assigns new value to magic multipler and calculate damage 
+        /// Setter assigns new bool value to magic and calculate damage 
         /// </remarks>
-        public int Magic
+        public bool Magic
         {
             get { return magic; }
             set
@@ -52,11 +57,11 @@ namespace ConsloleAppTOCalculationsDamageForOscar
         /// Propertis for flaming damage
         /// </summary>
         /// <remarks>
-        /// Getter renturns value fire damage 
+        /// Getter returns bool value is flaming
         /// 
-        /// Setter assign new value to fire damage and calclate damage
+        /// Setter assign new bool value to fire and calclate damage
         /// </remarks>
-        public int Flaming 
+        public bool Flaming 
         {
             get { return flaming; }
             set
