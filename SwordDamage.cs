@@ -12,6 +12,7 @@ namespace ConsloleAppTOCalculationsDamageForOscar
         public const int FlameDamage = 2;
         private int roll;
         private int flaming;
+        private int magic;
 
         public int Roll
         {
@@ -30,20 +31,17 @@ namespace ConsloleAppTOCalculationsDamageForOscar
         {
             Damage = (int)(Roll * MagicMultipler) + BaseDamage + FlamingDamage;
         }
-        public void SetMagic(bool isMagic)
+        
+        public int Magic
         {
-            if (isMagic)
+            get { return magic; }
+            set
             {
-                MagicMultipler = 1.75M;
-            }
-            else
-            {
-                MagicMultipler = 1M;
+                magic = value;
+                CalculateDamage();
 
             }
-            CalculateDamage();
         }
-        
         public int Flaming 
         {
             get { return flaming; }
